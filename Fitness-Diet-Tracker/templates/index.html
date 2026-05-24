@@ -1,0 +1,61 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Fitness & Diet Tracker</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+    <div class="container">
+        <h1>Fitness & Diet Tracker</h1>
+
+        <form method="POST">
+            <input type="text" name="name" placeholder="Meal Name" required>
+
+            <input type="number" name="calories" placeholder="Calories" required>
+
+            <input type="number" step="0.1" name="protein" placeholder="Protein (g)" required>
+
+            <input type="number" step="0.1" name="carbs" placeholder="Carbs (g)" required>
+
+            <input type="number" step="0.1" name="fats" placeholder="Fats (g)" required>
+
+            <button type="submit">Add Meal</button>
+        </form>
+
+        <div class="summary">
+            <h2>Daily Totals</h2>
+            <p>Calories: {{ total_calories }}</p>
+            <p>Protein: {{ total_protein }} g</p>
+            <p>Carbs: {{ total_carbs }} g</p>
+            <p>Fats: {{ total_fats }} g</p>
+        </div>
+
+        <h2>Meal History</h2>
+
+        <table>
+            <tr>
+                <th>Time</th>
+                <th>Meal</th>
+                <th>Calories</th>
+                <th>Protein</th>
+                <th>Carbs</th>
+                <th>Fats</th>
+            </tr>
+
+            {% for meal in meals %}
+            <tr>
+                <td>{{ meal.time }}</td>
+                <td>{{ meal.name }}</td>
+                <td>{{ meal.calories }}</td>
+                <td>{{ meal.protein }}</td>
+                <td>{{ meal.carbs }}</td>
+                <td>{{ meal.fats }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+
+</body>
+</html>
